@@ -22,4 +22,4 @@ const playlistLengthCalculator = () => {
   return timeInSeconds.reduce((a, c) => a + c);
 }
 
-export default playlistLengthCalculator;
+module.exports = {playlistLengthCalculator};
