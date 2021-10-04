@@ -43,4 +43,5 @@ async function scrapePlaylist (url) {
 
 
 //TODO: Recieve data from endpoints
-scrapePlaylist('https://www.youtube.com/playlist?list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL');
+// scrapePlaylist('https://www.youtube.com/playlist?list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL');
+scrapePlaylist('https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6');
