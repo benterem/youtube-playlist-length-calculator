@@ -1,10 +1,8 @@
-const express = require('express')
-const app = express()
+const app = require('./app')
 const http = require('http')
-const logger = require('logger')
-const scrapePlaylist = require('./scrapers')
+const logger = require('./utils/logger')
 
 const server = http.createServer(app)
 
 const PORT = 3001
-app.listen(PORT, () => console.log(`Server running on port ${PORT} woof woof`))
+server.listen(PORT, () => logger.info(`Server running on port ${PORT} woof woof`))
