@@ -9,5 +9,7 @@ app.use(cors)
 app.use(express.static('build'))
 app.use(express.json())
 
-app.use('/api/playlist')
+app.use('/api/playlists')
+
+
 module.exports = app
