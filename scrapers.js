@@ -42,8 +42,8 @@ async function scrapePlaylist (url) {
   browser.close();
 
   return {
-    totalLengthInSeconds = totalTimeInSeconds,
-    approximateTimeInMinutes = Math.floor(totalTimeInSeconds / 60)
+    totalLengthInSeconds: totalTimeInSeconds,
+    approximateTimeInMinutes : Math.floor(totalTimeInSeconds / 60)
   }
 }
 
