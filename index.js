@@ -1,15 +1,12 @@
-const { response, request } = require('express');
 const express = require('express')
 const app = express()
+const http = require('http')
+const logger = require('logger')
 const scrapePlaylist = require('./scrapers')
 
-const url = 'https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6'
+const server = http.createServer(app)
 
-app.get('/api/playlists/length', (request, response) => {
-  scrapePlaylist(url)
-    .then(data => response.send(data))
-    .catch(e => response.status(404).end())
-})
+
 
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
