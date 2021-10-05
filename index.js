@@ -4,10 +4,10 @@ const app = express()
 const scrapePlaylist = require('./scrapers')
 
 const url = 'https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6'
-const urlLengthObject = scrapePlaylist(url);
 
-app.get('/', (request, response) => {
-  response.send(urlLengthObject)
+app.get('/api/playlists/length', (request, response) => {
+  const urlLengthObject = scrapePlaylist(url).then(data => response.send(data));
+  // response.json(urlLengthObject)
 })
 
 const PORT = 3001
