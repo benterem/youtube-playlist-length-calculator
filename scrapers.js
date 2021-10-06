@@ -9,6 +9,7 @@ const lengthFormated = (timeInSeconds) => {
 
 async function scrapePlaylist (url) {
 
+  console.log('in scraper')
   //TODO: add case where url isn't OF the playlist but HAS the url of the playlist
   // i.e find <a> of the playlist and go there and then calculate the length
 
@@ -17,34 +18,37 @@ async function scrapePlaylist (url) {
   await page.goto(url);
   
   await page.screenshot({path: 'screenshot.png'});
-  
-  const spans = await page.$x('//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]');
 
-  const srcs = await Promise.all(spans.map(async span => await span.getProperty('innerText')));
-  const timeStamps = await Promise.all(srcs.map(async src => await src.jsonValue()));
+  setTimeout( async () => {
 
-  const totalTimeInSeconds = timeStamps.reduce((a, c) => {
-    let timeArray = c.split(':');
-    return a + parseInt(timeArray[0]) * 60 + parseInt(timeArray[1]);
-  }, 0);
+    const spans = await page.$x('//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]');
 
-  console.log(`There are ${timeStamps.length} videos in the playlist`);
-  
-  const lengthObject = lengthFormated(totalTimeInSeconds);
+    const srcs = await Promise.all(spans.map(async span => await span.getProperty('innerText')));
+    const timeStamps = await Promise.all(srcs.map(async src => await src.jsonValue()));
 
-  //TODO: send back data to client
-  console.log(`Total playlist length:\n${lengthObject.hours} hours, ${lengthObject.mins} minutes, ${lengthObject.secs} seconds`);
-  console.log(`Approximately ${Math.floor(totalTimeInSeconds / 60)} minutes`);
-  console.log(`Go to the playlist ${url}`)
+    const totalTimeInSeconds = timeStamps.reduce((a, c) => {
+      let timeArray = c.split(':');
+      return a + parseInt(timeArray[0]) * 60 + parseInt(timeArray[1]);
+    }, 0);
 
-  console.log(totalTimeInSeconds);
+    console.log(`There are ${timeStamps.length} videos in the playlist`);
+    
+    const lengthObject = lengthFormated(totalTimeInSeconds);
 
-  browser.close();
+    //TODO: send back data to client
+    console.log(`Total playlist length:\n${lengthObject.hours} hours, ${lengthObject.mins} minutes, ${lengthObject.secs} seconds`);
+    console.log(`Approximately ${Math.floor(totalTimeInSeconds / 60)} minutes`);
+    console.log(`Go to the playlist ${url}`)
 
-  return {
-    totalLengthInSeconds: totalTimeInSeconds,
-    approximateTimeInMinutes : Math.floor(totalTimeInSeconds / 60)
-  }
+    console.log(totalTimeInSeconds);
+
+    browser.close();
+
+    return {
+      totalLengthInSeconds: totalTimeInSeconds,
+      approximateTimeInMinutes : Math.floor(totalTimeInSeconds / 60)
+    }
+  }, 2000)
 }
 
 

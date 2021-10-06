@@ -4,9 +4,12 @@ const url = 'https://www.youtube.com/playlist?list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH
 
 playlistRouter.get('/', (request, response) => {
   console.log('sdfad')
-  scrapePlaylist(url)
+  scrapePlaylist('https://www.youtube.com/watch?v=eal4-A89IWY&list=PL8dPuuaLjXtOPRKzVLY0jJY-uHOH9KVU6')
     .then(data => response.send(data))
-    .catch(e => response.status(404).end())
+    .catch(e => {
+      console.log('in catch') 
+      response.status(404).end()
+    })
 })
 
 module.exports = playlistRouter
