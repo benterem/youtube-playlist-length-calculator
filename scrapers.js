@@ -10,9 +10,6 @@ const lengthFormated = (timeInSeconds) => {
 async function scrapePlaylist (url) {
 
   console.log('in scraper')
-  //TODO: add case where url isn't OF the playlist but HAS the url of the playlist
-  // i.e find <a> of the playlist and go there and then calculate the length
-
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url);
@@ -50,10 +47,6 @@ async function scrapePlaylist (url) {
     }
   }, 2000)
 }
-
-
-//TODO: Recieve data from endpoints
-// scrapePlaylist('https://www.youtube.com/playlist?list=PLIhvC56v63IJIujb5cyE13oLuyORZpdkL');
 
 
 module.exports = scrapePlaylist
