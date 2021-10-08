@@ -1,11 +1,5 @@
 const puppeteer = require('puppeteer');
 
-const lengthFormated = (timeInSeconds) => {
-  const hours = Math.floor(timeInSeconds / 3600);
-  const mins = Math.floor((timeInSeconds % 3600) / 60);
-  const secs = (timeInSeconds % 3600) % 60;
-  return {hours, mins, secs}
-}
 
 async function scrapePlaylist (url) {
 
@@ -30,15 +24,6 @@ async function scrapePlaylist (url) {
 
     console.log(`There are ${timeStamps.length} videos in the playlist`);
     
-    const lengthObject = lengthFormated(totalTimeInSeconds);
-
-    //TODO: send back data to client
-    console.log(`Total playlist length:\n${lengthObject.hours} hours, ${lengthObject.mins} minutes, ${lengthObject.secs} seconds`);
-    console.log(`Approximately ${Math.floor(totalTimeInSeconds / 60)} minutes`);
-    console.log(`Go to the playlist ${url}`)
-
-    console.log(totalTimeInSeconds);
-
     browser.close();
 
     return {
