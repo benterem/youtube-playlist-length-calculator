@@ -8,8 +8,6 @@ async function scrapePlaylist (url) {
   const page = await browser.newPage();
   await page.goto(url);
   
-  await page.screenshot({path: 'screenshot.png'});
-
   setTimeout( async () => {
 
     const spans = await page.$x('//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]');
