@@ -6,8 +6,13 @@ playlistRouter.get('/', (request, response) => {
   
   const playlistUrl = request.body.url
 
-  scrapePlaylist(playlistUrl)
-    .then(data => response.send(data))
+  const playlistData = scrapePlaylist(playlistUrl)
+  
+  playlistData
+    .then(data => {
+      console.log('data', data)
+      response.json(data)
+    })
     .catch(e => {
       console.log('in catch') 
       response.status(404).end()
