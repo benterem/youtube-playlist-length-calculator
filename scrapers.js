@@ -6,7 +6,7 @@ async function scrapePlaylist (url) {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url, {waitUntil: 'networkidle0'});
-
+  await page.screenshot({path: 'video_or_playlist_page.png'})
 
   //if url given is of single video, go to playlist page
   if(url.search('playlist') === -1){
@@ -15,7 +15,7 @@ async function scrapePlaylist (url) {
     const url = await url_object.jsonValue()
 
     await page.goto(url)
-    await page.screenshot({path: 'screenshot.png'})
+    await page.screenshot({path: 'playlist_page.png'})
   }
 
   const spans = await page.$x('//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]');
