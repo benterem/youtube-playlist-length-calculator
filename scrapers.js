@@ -15,6 +15,7 @@ async function scrapePlaylist (url) {
     const url = await url_object.jsonValue()
 
     await page.goto(url)
+    await page.screenshot({path: 'screenshot.png'})
   }
 
   const spans = await page.$x('//span[@class="style-scope ytd-thumbnail-overlay-time-status-renderer"]');
