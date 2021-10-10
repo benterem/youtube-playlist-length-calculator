@@ -10,11 +10,9 @@ playlistRouter.get('/', (request, response) => {
   
   playlistData
     .then(data => {
-      console.log('data', data)
       response.json(data)
     })
     .catch(e => {
-      console.log('in catch') 
       response.status(404).end()
     })
 })
