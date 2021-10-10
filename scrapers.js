@@ -3,7 +3,6 @@ const puppeteer = require('puppeteer');
 
 async function scrapePlaylist (url) {
 
-  console.log('in scraper')
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto(url, {waitUntil: 'networkidle0'});
