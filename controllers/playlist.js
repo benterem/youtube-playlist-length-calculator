@@ -12,7 +12,7 @@ playlistRouter.get('/', (request, response) => {
       response.json(data)
     })
     .catch(e => {
-      response.status(404).end()
+      response.status(404).send({error: 'Try a different url'})
     })
 })
 
