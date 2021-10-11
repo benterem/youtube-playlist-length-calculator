@@ -36,7 +36,9 @@ async function scrapePlaylist (url) {
 
   playlistData = {
     totalLengthInSeconds: totalTimeInSeconds,
-    approximateTimeInMinutes : Math.floor(totalTimeInSeconds / 60)
+    approximateTimeInMinutes : Math.floor(totalTimeInSeconds / 60),
+    approximateTimeInHours: Math.floor(totalTimeInSeconds / 3600),
+    numberOfVideos: timeStamps.length
   }
   
   return playlistData
