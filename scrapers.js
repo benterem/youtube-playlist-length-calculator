@@ -25,7 +25,11 @@ async function scrapePlaylist (url) {
 
   const totalTimeInSeconds = timeStamps.reduce((a, c) => {
     let timeArray = c.split(':');
-    return a + parseInt(timeArray[0]) * 60 + parseInt(timeArray[1]);
+    if(timeArray.length === 3){
+      return a + parseInt(timeArray[0]) * 3600 + parseInt(timeArray[1]) * 60 + parseInt(timeArray[2]);
+    }else {
+      return a + parseInt(timeArray[0]) * 60 + parseInt(timeArray[1]);
+    }
   }, 0);
   
   browser.close();
