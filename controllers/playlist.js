@@ -16,5 +16,18 @@ playlistRouter.get('/', (request, response) => {
     })
 })
 
+playlistRouter.get('/urls', (request, response) => {
+  const playlistUrls = request.body.urls 
+  const playlistsData = playlistUrls.map(u => scrapePlaylist(u))
+
+  playlistsData
+    .then(data => {
+      response.json(data)
+    })
+    .catch(e => {
+      response.status(404).send({error: 'At least one of the URLs didn\'t work'})
+    })
+})
+
 
 module.exports = playlistRouter
